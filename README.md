@@ -92,5 +92,69 @@ LIMIT 10
 
 
 
+## 2nd Checkpoint : API endpoint from which this dataset can be retrieved in json format
+
+_Prerequisite_ : Download Postman application to execute curl cmds.
+
+### Step 1 : Create OAuth Credentials
+
+Google uses OAuth 2.0 protocol for authentication and authorization. We need a valid key to send requests to BigQuery streaming API endpoints. 
+We have to get OAuth 2.0 client credentials from Google cloud API console.
+We need to make sure first that bigquery API is enabled.
+
+![image](https://user-images.githubusercontent.com/68516240/174670368-74254405-60ff-4c3c-8b3f-179dc5efcc09.png)
+Here the API is already enabled.
+
+
+Then we need to click on 'Create Credentials'
+
+![image](https://user-images.githubusercontent.com/68516240/174670502-c51da6e1-bd13-4053-be5a-f723537e4dab.png)
+
+
+We choose “Create OAuth client ID” and apply the following settings : 
+
+- Application Type: Web Application
+- Name: Postman Client (Choose any names)
+- Authorized redirect URIs: https://bigquery.googleapis.com
+
+This will create OAuth ID. We will use these credentials (Client ID and Client Secret) in Postman to generate a token for every request to the BigQuery streaming API.
+
+![image](https://user-images.githubusercontent.com/68516240/174670775-b87d9cbd-6f6f-48c6-a398-ad375350153e.png)
+
+
+
+### Step 2 : Generating Token in Postman
+
+In the authorization section, click on “get new access token”. And then configure the following parameters : 
+
+- Token Name: felyx-token
+- Grant Type: Authorization Code
+- Callback URL: https://bigquery.googleapis.com
+- Auth URL: https://accounts.google.com/o/oauth2/auth
+- Access Token URL: https://oauth2.googleapis.com/token
+- Client ID: Copy Google cloud OAuth credentials from GCP console or from the json file downloaded from the OAuth console.
+- Client Secret: Copy from Google cloud OAuth credentials console or from the json file downloaded from the OAuth console.
+- Scope: https://www.googleapis.com/auth/bigquery
+- Client Authentication: Send client credentials in body
+
+3. Click on “request token”.
+
+4. Then finally, We follow this link to list the content of a table in rows :
+
+For Reservation table : 
+GET https://bigquery.googleapis.com/bigquery/v2/projects/felyx-assignement/datasets/INTEGRATION_IN/tables/reservations/data
+
+For location table : 
+GET https://bigquery.googleapis.com/bigquery/v2/projects/felyx-assignement/datasets/INTEGRATION_IN/tables/location/data
+
+5. Click “send” request to execute the call.
+
+We can see the location table Data in JSON format.
+
+![image](https://user-images.githubusercontent.com/68516240/174669778-e24c8c78-4d95-47a3-94f4-b52f1c340c41.png)
+
+
+
+
 ## Access to GCP project is available upon request
 
