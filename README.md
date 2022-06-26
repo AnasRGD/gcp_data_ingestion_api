@@ -32,7 +32,7 @@ First of all, i created a new GCP project and enabled BigQuery, Cloud Functions,
 To make it more interesting, i decided to create all the static ressources (GCS buckets, roles, service accounts and Datasets) using Terraform.
 Please find below the link to my Terraform repo : 
 
-
+https://github.com/AnasRGD/felyx_assignement_terraform
 
 
 ### Step 2 : Create a Cloud Function with a GCS Create event trigger 
