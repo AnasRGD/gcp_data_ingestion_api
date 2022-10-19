@@ -1,8 +1,8 @@
-# Data Engineering Assignement
+# Batch Data Ingestion Process and exposition via API endpoint
 
-## Assignement Overview :
+## Project Overview :
 
-This assignement consists of continually ingesting datas coming from CSV files. Once the data is available on a Data warehouse, Different endpoints must be exposed in order to provide either :
+This project consists of continually ingesting datas coming from CSV files. Once the data is available on a Data warehouse, Different endpoints must be exposed in order to provide either :
   - List of all table rows in json format.
   - List of all table rows in csv format.
   - List of rides count per location.
@@ -32,7 +32,7 @@ First of all, i created a new GCP project and enabled BigQuery, Cloud Functions,
 To make it more interesting, i decided to create all the static ressources (GCS buckets, roles, service accounts and Datasets) using Terraform.
 Please find below the link to my Terraform repo : 
 
-https://github.com/AnasRGD/felyx_assignement_terraform
+https://github.com/AnasRGD/gcp_data_ingestion_terraform
 
 
 ### Step 2 : Create a Cloud Function with a GCS Create event trigger 
@@ -55,10 +55,10 @@ Once the trigger is selected, select the bucket you want to use as a trigger sou
 The python code to automatically load the csv files into bq is available at : 
 
 For location files : 
-[felyx_assignement/reservations_to_bq/](https://github.com/AnasRGD/felyx_assignement/tree/master/locations_to_bq)
+[felyx_assignement/reservations_to_bq/](https://github.com/AnasRGD/gcp_data_ingestion_api/tree/master/locations_to_bq)
 
 For reservations : 
-https://github.com/AnasRGD/felyx_assignement/tree/master/reservations_to_bq
+https://github.com/AnasRGD/gcp_data_ingestion_api/tree/master/reservations_to_bq
 
 Once the functions are correctly deployed, we must have something like this : 
 
